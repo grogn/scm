@@ -1,0 +1,29 @@
+namespace scm.org
+
+asset CommodityType identified by id {
+  o String id
+  o String name
+}
+
+asset Commodity identified by serialNumber {
+  --> CommodityType type
+  o String serialNumber
+  --> Organization owner
+}
+
+asset Supply identified by id {
+  o String id
+  --> Commodity commodity
+  --> Organization from
+  --> Organization to
+}
+
+participant Organization identified by id {
+  o String id
+}
+
+transaction SupplyTrade {
+  --> Commodity commodity
+  --> Organization from
+  --> Organization to
+}
